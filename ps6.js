@@ -1,10 +1,11 @@
 let osc;
 let env;
+let tiles = [];
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
   
-  osc = new p5.Oscillator('sawtooth');
+  osc = new p5.Oscillator('square');
   osc.start();
   osc.amp(0);
   
@@ -20,6 +21,22 @@ function draw(){
   noFill();
   stroke(255);
   strokeWeight(2);
+
+
+  for(let i = tiles.length - 1; i >= 0; i--){
+    let rect = tiles[i];
+    rect.y += rect.speed;
+    
+    fill(rect.color);
+    noStroke();
+    rectMode(CENTER);
+    rect(rect.x, rect.y, 40, 60, 5);
+    
+    // Remove rectangles that fall off screen
+    if(rect.y > height + 50){
+      tiles.splice(i, 1);
+    }
+  }
 }
 
 function keyPressed(){

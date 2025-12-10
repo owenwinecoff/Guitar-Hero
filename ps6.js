@@ -40,7 +40,7 @@ function draw() {
     tile.y += tile.speed;
     
     if(tile.y > height * 0.55) {
-    tile.opacity -= 15;
+    tile.opacity -= 12;
   }
     
     // Draw glow effect

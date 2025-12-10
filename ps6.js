@@ -38,16 +38,17 @@ function draw() {
   for (let i = tiles.length - 1; i >= 0; i--) {
     let tile = tiles[i];
     tile.y += tile.speed;
-    tile.opacity -= 2;
+    
+    if(tile.y > height * 0.55) {
+    tile.opacity -= 15;
+  }
     
     // Draw glow effect
-    drawingContext.shadowBlur = 20;
-    drawingContext.shadowColor = `rgba(${tile.color[0]}, ${tile.color[1]}, ${tile.color[2]}, ${tile.opacity/255})`;
     
     fill(tile.color[0], tile.color[1], tile.color[2], tile.opacity);
     noStroke();
     rectMode(CENTER);
-    rect(tile.x, tile.y, 40, 60, 5);
+    rect(tile.x, tile.y, 40, 40, 5);
     
     drawingContext.shadowBlur = 0;
     
@@ -63,8 +64,18 @@ function drawStringLines() {
     width * 0.2,  // E string
     width * 0.4,  // A string
     width * 0.6,  // D string
-    width * 0.8   // G string
+    width * 0.8,  // G string
   ];
+
+  let y = height * 0.6;
+
+  stroke(255, 255, 255, 225);
+  strokeWeight(2);
+  noFill();
+  beginShape();
+  vertex(0, y);
+  vertex(width, y);
+  endShape();
   
   for (let i = 0; i < stringPositions.length; i++) {
     let x = stringPositions[i];
@@ -330,7 +341,7 @@ function keyPressed(){
     tiles.push({
       x: stringX,
       y: 0,
-      speed: 3,
+      speed: 7,
       color: stringColors[stringIndex],
       opacity: 255
     });

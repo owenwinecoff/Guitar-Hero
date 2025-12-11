@@ -18,7 +18,7 @@ function setup(){
   
   // Create envelope for attack/decay/sustain/release
   env = new p5.Envelope();
-  env.setADSR(0.001, 0.1, 0.2, 0.3); // attack, decay, sustain, release
+  env.setADSR(0, 0.1, 0.2, 0.3); // attack, decay, sustain, release
   env.setRange(0.7, 0); // max volume to min volume
   osc.amp(env);
 }
@@ -40,7 +40,7 @@ function draw() {
     tile.y += tile.speed;
     
     if(tile.y > height * 0.55) {
-    tile.opacity -= 12;
+    tile.opacity -= 14;
   }
     
     // Draw glow effect
@@ -341,7 +341,7 @@ function keyPressed(){
     tiles.push({
       x: stringX,
       y: 0,
-      speed: 7,
+      speed: 10,
       color: stringColors[stringIndex],
       opacity: 255
     });

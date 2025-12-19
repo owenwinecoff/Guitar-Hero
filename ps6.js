@@ -50,6 +50,17 @@ function draw() {
     rectMode(CENTER);
     rect(tile.x, tile.y, 40, 40, 5);
     
+    //Draw key label on tile
+    if(tile.stringIndex == 3) {
+    fill(0, 0, 0, tile.opacity);
+    } else {
+    fill(255, 255, 255, tile.opacity);
+    }
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    textStyle(BOLD);
+    text(tile.keyLabel, tile.x, tile.y);
+    
     drawingContext.shadowBlur = 0;
     
     // Remove tiles off screen or faded
@@ -343,7 +354,9 @@ function keyPressed(){
       y: 0,
       speed: 10,
       color: stringColors[stringIndex],
-      opacity: 255
+      opacity: 255,
+      keyLabel: key.toUpperCase(),
+      stringIndex: stringIndex
     });
   }
 }
